@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./tmp_def;./tmp_lib;./tmp_net;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,6 +129,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
+    <ClCompile Include="tmp_lib\tmp_lib.c" />
+    <ClCompile Include="tmp_net\tmp_tcp.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tmp_def\tmp_def.h" />
+    <ClInclude Include="tmp_lib\tmp_lib.h" />
+    <ClInclude Include="tmp_net\tmp_tcp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
