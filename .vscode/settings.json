@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "tmp_def.h": "c",
+        "tmp_dns.h": "c",
+        "tmp_socket.h": "c",
+        "tmp_lib.h": "c"
+    }
+}

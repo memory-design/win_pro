@@ -18,5 +18,40 @@
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="tmp_lib\tmp_lib.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tmp_net\tmp_tcp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tmp_net\tmp_dns.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tmp_config\tmp_config.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tmp_net\tmp_socket.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tmp_def\tmp_def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tmp_lib\tmp_lib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tmp_net\tmp_tcp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tmp_net\tmp_dns.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tmp_config\tmp_config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tmp_net\tmp_socket.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

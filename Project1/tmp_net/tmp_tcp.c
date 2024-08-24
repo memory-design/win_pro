@@ -1,9 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include "tmp_tcp.h"
-#include "tmp_lib.h"
+#include "tmp_socket.h"
 
-TMP_TCP_CLIENT tmp_tcp_client = {0x00};
 #define MAX_SEND_BUF_SIZE (1024)
 #define MAX_RECV_BUF_SIZE (1024)
 u8 tcp_send_buf[MAX_SEND_BUF_SIZE] = {0x00};
@@ -52,36 +51,18 @@ void tmp_tcp_init(TMP_TCP_CLIENT *tmp)
  *
  * @return NULL
  */
-void tmp_tcp_client_open(TMP_TCP_CLIENT *tmp)
+void tmp_tcp_client_open(TMP_SOCKET *tmp)
 {
-    /* 初始化 Winsock */
-    if (WSAStartup(MAKEWORD(2, 2), &(tmp->wsa_data)) != 0)
-    {
-        printf("初始化 Winsock 失败\n");
-        return;
-    }
-    printf("初始化 Winsock 成功\n");
-
-    /* 创建套接字 */
-    tmp->tmp_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (tmp->tmp_socket == INVALID_SOCKET)
-    {
-        printf("创建 Socket 失败\n");
-        WSACleanup();
-        return;
-    }
-    printf("创建 Socket 成功\n");
-
     /* 设置服务器地址结构 */
-    tmp->ser_addr.sin_family = AF_INET;
-    tmp->ser_addr.sin_addr.s_addr = inet_addr(tmp->str_ser_ip);
-    tmp->ser_addr.sin_port = htons(tmp->ser_port);
+    tmp->tcp_client.ser_addr.sin_family = AF_INET;
+    tmp->tcp_client.ser_addr.sin_addr.s_addr = inet_addr(tmp->tcp_client.str_ser_ip);
+    tmp->tcp_client.ser_addr.sin_port = htons(tmp->tcp_client.ser_port);
 
     /* 连接到服务器 */
-    if (connect(tmp->tmp_socket, (struct sockaddr *)&tmp->ser_addr, sizeof(tmp->ser_addr)) == SOCKET_ERROR)
+    if (connect(tmp->socket, (struct sockaddr *)&tmp->tcp_client.ser_addr, sizeof(tmp->tcp_client.ser_addr)) == SOCKET_ERROR)
     {
         printf("连接服务器失败\n");
-        closesocket(tmp->tmp_socket);
+        closesocket(tmp->socket);
         WSACleanup();
         return;
     }
@@ -95,11 +76,11 @@ void tmp_tcp_client_open(TMP_TCP_CLIENT *tmp)
  *
  * @return NULL
  */
-void tmp_tcp_client_close(TMP_TCP_CLIENT *tmp)
+void tmp_tcp_client_close(TMP_SOCKET *tmp)
 {
     /* 关闭套接字和清理 Winsock */
     PRINTF_FUNC_NAME
-    closesocket(tmp->tmp_socket);
+    closesocket(tmp->socket);
     WSACleanup();
 }
 
@@ -110,11 +91,11 @@ void tmp_tcp_client_close(TMP_TCP_CLIENT *tmp)
  *
  * @return NULL
  */
-void tmp_tcp_client_write(TMP_TCP_CLIENT *tmp)
+void tmp_tcp_client_write(TMP_SOCKET *tmp)
 {
     int result;
     /* 发送数据 */
-    result = send(tmp->tmp_socket, tmp->send_buf, tmp->send_len, 0);
+    result = send(tmp->socket, tmp->tcp_client.send_buf, tmp->tcp_client.send_len, 0);
     if (result == SOCKET_ERROR)
     {
         printf("发送失败\n");
@@ -122,7 +103,7 @@ void tmp_tcp_client_write(TMP_TCP_CLIENT *tmp)
     else
     {
         printf("发送成功\n");
-        printf_array(tmp->send_buf, tmp->send_len, "send_buf");
+        printf_array(tmp->tcp_client.send_buf, tmp->tcp_client.send_len, "send_buf");
     }
 }
 
@@ -133,15 +114,15 @@ void tmp_tcp_client_write(TMP_TCP_CLIENT *tmp)
  *
  * @return NULL
  */
-void tmp_tcp_client_read(TMP_TCP_CLIENT *tmp)
+void tmp_tcp_client_read(TMP_SOCKET *tmp)
 {
     int result;
     /* 接收数据 */
-    result = recv(tmp->tmp_socket, tmp->recv_buf, tmp->recv_len, 0);
+    result = recv(tmp->socket, tmp->tcp_client.recv_buf, tmp->tcp_client.recv_len, 0);
     if (result > 0)
     {
         printf("接收成功\n");
-        printf_array(tmp->recv_buf, result, "recv_buf");
+        printf_array(tmp->tcp_client.recv_buf, result, "recv_buf");
     }
     else if (result == 0)
     {

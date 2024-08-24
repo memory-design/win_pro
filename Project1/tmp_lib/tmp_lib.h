@@ -5,7 +5,6 @@
 extern "C" { 
 #endif 
 
-#include <stdio.h>
 #include "tmp_def.h"
 
 void printf_array(u8 *buf, u16 len, char *name);

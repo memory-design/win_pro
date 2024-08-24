@@ -11,6 +11,15 @@ extern "C"
     typedef unsigned short u16;
     typedef unsigned int u32;
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include "tmp_tcp.h"
+#include "tmp_dns.h"
+#include "tmp_config.h"
+
 /* 宏定义打印函数名 */
 #define PRINTF_FUNC_NAME printf("%s\n", __FUNCTION__);
 
