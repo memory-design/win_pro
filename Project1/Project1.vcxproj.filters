@@ -33,6 +33,9 @@
     <ClCompile Include="tmp_net\tmp_socket.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="tmp_net\tmp_mqtt.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tmp_def\tmp_def.h">
@@ -51,6 +54,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="tmp_net\tmp_socket.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tmp_net\tmp_mqtt.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

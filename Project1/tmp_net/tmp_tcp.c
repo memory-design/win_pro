@@ -3,15 +3,13 @@
 #include "tmp_tcp.h"
 #include "tmp_socket.h"
 
-#define MAX_SEND_BUF_SIZE (1024)
-#define MAX_RECV_BUF_SIZE (1024)
 u8 tcp_send_buf[MAX_SEND_BUF_SIZE] = {0x00};
 u8 tcp_recv_buf[MAX_RECV_BUF_SIZE] = {0x00};
 
-void tmp_tcp_client_open(TMP_TCP_CLIENT *tmp);
-void tmp_tcp_client_close(TMP_TCP_CLIENT *tmp);
-void tmp_tcp_client_write(TMP_TCP_CLIENT *tmp);
-void tmp_tcp_client_read(TMP_TCP_CLIENT *tmp);
+void tmp_tcp_client_open(TMP_SOCKET *tmp);
+void tmp_tcp_client_close(TMP_SOCKET *tmp);
+void tmp_tcp_client_write(TMP_SOCKET *tmp);
+void tmp_tcp_client_read(TMP_SOCKET *tmp);
 
 /**
  * @brief tcp client 参数初始化
@@ -23,14 +21,14 @@ void tmp_tcp_client_read(TMP_TCP_CLIENT *tmp);
 void tmp_tcp_init(TMP_TCP_CLIENT *tmp)
 {
     /* 设置服务器ip */
-    tmp->ser_ip[0] = 192;
-    tmp->ser_ip[1] = 168;
-    tmp->ser_ip[2] = 31;
-    tmp->ser_ip[3] = 39;
+    tmp->ser_ip[0] = 117;
+    tmp->ser_ip[1] = 78;
+    tmp->ser_ip[2] = 5;
+    tmp->ser_ip[3] = 125;
     sprintf(tmp->str_ser_ip, "%u.%u.%u.%u", tmp->ser_ip[0], tmp->ser_ip[1], tmp->ser_ip[2], tmp->ser_ip[3]);
 
     /* 设置服务器端口 */
-    tmp->ser_port = 8080;
+    tmp->ser_port = 1883;
 
     /* 设置发送接收缓存区指针 */
     tmp->send_buf = tcp_send_buf;

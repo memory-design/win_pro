@@ -8,15 +8,16 @@ extern "C"
 
 #include "tmp_def.h"
 
-typedef struct TMP_SOCKET
-{
-    WSADATA wsa_data;               /* socket 初始化需要的数据 */
-    SOCKET socket;                  /* socket */
-    TMP_TCP_CLIENT tcp_client;      /* tcp 客户端结构体 */
-    TMP_DNS dns;                    /* dns 结构体 */
-}TMP_SOCKET;
-extern TMP_SOCKET tmp_socket;
+    typedef struct TMP_SOCKET
+    {
+        WSADATA wsa_data;          /* socket 初始化需要的数据 */
+        SOCKET socket;             /* socket */
+        TMP_TCP_CLIENT tcp_client; /* tcp 客户端结构体 */
+        TMP_DNS dns;               /* dns 结构体 */
+    } TMP_SOCKET;
+    extern TMP_SOCKET tmp_socket;
 
+    void tmp_socket_init(TMP_SOCKET *tmp);
 
 #ifdef __cplusplus
 }

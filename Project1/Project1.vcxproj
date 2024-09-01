@@ -132,6 +132,7 @@
     <ClCompile Include="tmp_config\tmp_config.c" />
     <ClCompile Include="tmp_lib\tmp_lib.c" />
     <ClCompile Include="tmp_net\tmp_dns.c" />
+    <ClCompile Include="tmp_net\tmp_mqtt.c" />
     <ClCompile Include="tmp_net\tmp_socket.c" />
     <ClCompile Include="tmp_net\tmp_tcp.c" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="tmp_def\tmp_def.h" />
     <ClInclude Include="tmp_lib\tmp_lib.h" />
     <ClInclude Include="tmp_net\tmp_dns.h" />
+    <ClInclude Include="tmp_net\tmp_mqtt.h" />
     <ClInclude Include="tmp_net\tmp_socket.h" />
     <ClInclude Include="tmp_net\tmp_tcp.h" />
   </ItemGroup>
